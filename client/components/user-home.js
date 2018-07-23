@@ -11,7 +11,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <h4>hello world</h4>
+      <h4>Boilermaker Demo</h4>
     </div>
   )
 }

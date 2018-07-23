@@ -2,6 +2,7 @@ const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const {User} = require('../db/models')
+const process = require('./secret')
 module.exports = router
 
 /**
@@ -46,6 +47,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   passport.use(strategy)
 
   router.get('/', passport.authenticate('google', {scope: 'email'}))
+
 
   router.get(
     '/callback',
