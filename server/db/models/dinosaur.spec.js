@@ -43,5 +43,32 @@ describe('Dinosaur model', () => {
         expect(err.message).to.contain('Validation error');
       }
     })
+
+    it ('fails if price is less than 0', async () => {
+      const dinosaur = Dinosaurs.build({name: 'Dino', price: -5});
+
+      try {
+        await dinosaur.validate();
+        throw Error("Price is less than 0, still worked.");
+      }
+
+      catch (err) {
+        expect(err.message).to.contain('Validation error');
+      }
+    })
+
+    it ('defaults to the default imageURL', async () => {
+      const dinosaur = Dinosaurs.build({name: 'Dino', price: 22});
+
+      try {
+        await dinosaur.validate();
+        expect(dinosaur.imageUrl).to.equal("https://i.imgur.com/fFU0FZ8.png")
+      }
+
+      catch (err) {
+        throw Error("It failed, even though it shouldn't have had.")
+      }
+    })
+
   })
 })
