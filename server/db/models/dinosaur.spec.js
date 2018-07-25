@@ -19,8 +19,29 @@ describe('Dinosaur model', () => {
       })
     })
 
-    it('fails if the dino has no name', () => {
-      expect(async () => {await Dinosaurs.create({price: 22})}).to.throw()
+    it('fails if the dino has no name', async () => {
+      const dinosaur = Dinosaurs.build();
+
+      try {
+        await dinosaur.validate();
+        throw Error("It worked. It shouldn't have had.");
+      }
+      catch (err) {
+        expect(err.message).to.contain('name cannot be null');
+      }
+    })
+
+    it ('fails if the dino is an empty string', async () => {
+      const dinosaur = Dinosaurs.build({name: ''});
+
+      try {
+        await dinosaur.validate();
+        throw Error("Name is empty, and it worked. It shouldn't.");
+      }
+
+      catch (err) {
+        expect(err.message).to.contain('Validation error');
+      }
     })
   })
 })
