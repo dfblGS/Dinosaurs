@@ -16,12 +16,13 @@ install:
 before_script:
   - psql -c 'create database "dinousaurs-shop-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: radiant-caverns-64962
+  api_key:
+    secure: "rHU4HBQDw3UmgH5k3an/MRjjfh9czpilsyV8G3cKbFD1C9W5u//46tZjC2EWtFgejcb9Nu4f1mUA3CIu5o8rM5+/+DjWKToI2hNpBpi8rDDw19WwnUFKmHv7VV0d3cxRLyKrLNXEKo8WPtXPGnH3Cs0z6VjgPvJ5mxNSekRw54qcxmbUXstMdqQ53XtQfHHAC2P+fRz6wVQW35sualQCQcwzjFSWJAn5EJaFLMeOrIDvGkHyAIhkc3Mx7qQxAKhhgj4CwGrquqQdTzjq9LmE+owyCTsSvoYpvihAdyCYr3VhcXHAbNqUdyR0OppVV9OeqslyiYxsx9lAAOF22Sfr70Ue/kXlup2cyLzcSv4Cv5jP+HCbk697XegZr3TuZ7Ci+3uMFJLyF0Y5ibbcbTMn4EUgFvdk4/32lXSxYBuKeUzp1fcue/1Qg+lCLZn4veM31MJ+BGNDKfn/hr9xIU30YgbsPFDJQrfjAXIDU3NsZbGXkL925VIBUVD0xlelhRHV0eTegy0yaRCfWIetZ1h4LIwOGGHYBwNJa7vTc6Vo/WXplFe+nV76tB+rsEglwi3Br3nB7QChL0Id5g0P2PGquhmDgcASiF5x2MD7xBsM49TFTOVPbq2sBMxQgB6OVbktfaQhhWICLXRz99ZcpNJtOIDqeemnzfZV61+1vsXTZtw="
+
