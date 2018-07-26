@@ -6,6 +6,9 @@ import {addToCart} from '../store/cartReducer'
 export class HomePage extends Component {
   constructor() {
     super()
+    this.state = {
+      added: false
+    }
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -17,6 +20,16 @@ export class HomePage extends Component {
 
   handleClick(dinosaur) {
     this.props.addToCart(dinosaur)
+    this.setState({added: true})
+    console.log(this.state.added)
+  }
+
+  timedOut(){
+    if(this.state.added === true){
+      setTimeout(function(){
+        this.setState({added: false})
+      }, 2000)
+    }
   }
 
   render() {
@@ -33,13 +46,20 @@ export class HomePage extends Component {
                 <h2>{data.name}</h2>
                 <h1>{data.price}</h1>
                 <h1>{data.description}</h1>
+                {
+                  this.state.added === false ? 
                 <button
-                  onClick={() => {
-                    this.handleClick(data)
-                  }}
+                onClick={() => {
+                  this.handleClick(data)
+                }}
                 >
-                  Add To Cart
+                Add To Cart
                 </button>
+                :
+                <button onload={this.timedOut()}>
+                Added!
+                </button>
+              }
               </ul>
             )
           })
