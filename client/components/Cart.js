@@ -21,9 +21,9 @@ export class Cart extends Component {
     const {cart} = this.props
     return (
       <div>
-        {cart.map(dinosaur => {
+        {cart.map((dinosaur, index) => {
           return (
-            <ul key={dinosaur.id}>
+            <ul key={index}>
               <h2>{dinosaur.name}</h2>
               <h1>{dinosaur.price}</h1>
               <h1>{dinosaur.image}</h1>
