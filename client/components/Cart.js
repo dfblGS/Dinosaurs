@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {removeFromCart, checkout} from '../store/cartReducer'
+import CheckoutForm from './CheckoutForm'
+import {Elements} from 'react-stripe-elements'
 
 export class Cart extends Component {
 	constructor() {
@@ -18,7 +20,7 @@ export class Cart extends Component {
 	}
 
 	render() {
-    const { cart } = this.props
+		const {cart} = this.props
 		return (
 			<div>
 				{cart.map(dinosaur => {
@@ -37,13 +39,9 @@ export class Cart extends Component {
 						</ul>
 					)
 				})}
-				<button
-					onClick={() => {
-						this.handleCheckout()
-					}}
-				>
-					Checkout
-				</button>
+				<Elements>
+					<CheckoutForm />
+				</Elements>
 			</div>
 		)
 	}
