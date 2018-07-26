@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {injectStripe, CardElement, AddressElement} from 'react-stripe-elements'
+import {injectStripe} from 'react-stripe-elements'
+import CardSection from './CardSection'
 
 class CheckoutForm extends Component {
-	handleSubmit = event => {
+	handleSubmit = (event) => {
 		event.preventDefault()
 		this.props.stripe.createToken({type: 'card', name: 'Toomi Yuna'})
 	}
@@ -10,7 +11,7 @@ class CheckoutForm extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<label> Card details <CardElement style={{base: {fontSize: '18px'}}} /> </label>
+				<CardSection />
 				<button>Confirm order</button>
 			</form>
 		)
