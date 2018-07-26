@@ -9,14 +9,28 @@ export const addToCart = dinosaur => ({
 	dinosaur
 })
 
+export const removeFromCart = dinosaur => ({
+	type: REMOVE_FROM_CART,
+	dinosaur
+})
+
+export const checkout = () => ({
+	type: CHECKOUT,
+})
+
 const cartReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_TO_CART:
 			return [...state, action.dinosaur]
 		case REMOVE_FROM_CART:
-			return state.filter(element => {
-				return element.id !== action.dinosaur.id
-			})
+			let indexOf;
+			for (let i = 0; i<state.length;i++) {
+				if (state[i].name === action.dinosaur.name) {
+					indexOf = i
+					break;
+				}
+			}
+			return state.filter((element, index) => (index !== indexOf))
 		case CHECKOUT:
 			return initialState
 		default:

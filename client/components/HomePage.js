@@ -10,13 +10,12 @@ export class HomePage extends Component {
 		this.handleClick = this.handleClick.bind(this)
 	}
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.props.fetchDinosaurs()
     };
 
     handleClick (dinosaur) {
     	this.props.addToCart(dinosaur)
-    	console.log("Handle click called on ", dinosaur)
     }
 
     render(){
