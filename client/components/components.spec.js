@@ -19,11 +19,6 @@ describe('HomePage Component', () => {
 
   })
 
-  // it('receives dinosaurs as props', () => {
-  //   expect(wrapper.instance().props.dinosaurs).to.exist
-  //   expect(wrapper.instance().props.dinosaurs).to.be.an('array')
-  // })
-
   it('displays a list with all dinos, with name, price and image', () => {
     dinosaurs.forEach(dino => {
       expect(wrapper.text()).to.contain(dino.name)
