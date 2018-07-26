@@ -28,5 +28,16 @@ describe('User routes', () => {
       expect(res.body).to.be.an('array')
       expect(res.body[0].email).to.be.equal(codysEmail)
     })
+
+    it('POST /api/users', async () => {
+      const res = await request(app)
+        .post('/api/users')
+        .send({
+          email: 'bob@gmail.com'
+        })
+        .expect(201)
+      const createdUser = await User.findById(res.body.id)
+      expect(createdUser.email).to.be.equal('bob@gmail.com')
+    })
   }) // end describe('/api/users')
 }) // end describe('User routes')
