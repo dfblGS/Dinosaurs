@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {removeFromCart, checkout} from '../store/cartReducer'
 import CheckoutForm from './CheckoutForm'
 import {Elements} from 'react-stripe-elements'
+import {StripeProvider} from 'react-stripe-elements'
 
 export class Cart extends Component {
 	constructor() {
@@ -22,6 +23,7 @@ export class Cart extends Component {
 	render() {
 		const {cart} = this.props
 		return (
+			<StripeProvider apiKey="pk_test_12345">
 			<div>
 				{cart.map(dinosaur => {
 					return (
@@ -43,6 +45,7 @@ export class Cart extends Component {
 					<CheckoutForm />
 				</Elements>
 			</div>
+			</StripeProvider>
 		)
 	}
 }
