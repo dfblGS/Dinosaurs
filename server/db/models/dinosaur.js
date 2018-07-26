@@ -20,7 +20,6 @@ const Dinosaurs = db.define('dinosaur', {
 	description: {
 		type: Sequelize.TEXT,
 	},
-	//Quantity: { type: Sequelize.INTEGER, },
 	imageUrl: {
 		type: Sequelize.STRING,
 		allowNull: false,
