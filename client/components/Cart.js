@@ -36,9 +36,10 @@ export class Cart extends Component {
 	}
 
 	render() {
+    const { cart } = this.props
 		return (
 			<div>
-				{fakeData.map(dinosaur => {
+				{cart.map(dinosaur => {
 					return (
 						<ul key={dinosaur.id}>
 							<h2>{dinosaur.name}</h2>
