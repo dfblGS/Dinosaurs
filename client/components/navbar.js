@@ -6,7 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BOILERMAKER</h1>
+    <h1>Dinoseller</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -23,6 +23,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      <div>
+        <Link to="/cart">Your Cart</Link>
+      </div>
     </nav>
     <hr />
   </div>
@@ -31,9 +34,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 /**
  * CONTAINER
  */
+export 
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
@@ -45,7 +49,10 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(
+  mapState,
+  mapDispatch
+)(Navbar)
 
 /**
  * PROP TYPES
