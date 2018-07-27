@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {removeFromCart, checkout} from '../store/cartReducer'
+import CheckoutForm from './CheckoutForm'
+import {Elements} from 'react-stripe-elements'
 
 export class Cart extends Component {
   constructor() {
@@ -17,36 +19,32 @@ export class Cart extends Component {
     this.props.checkout()
   }
 
-  render() {
-    const {cart} = this.props
-    return (
-      <div>
-        {cart.map((dinosaur, index) => {
-          return (
-            <ul key={index}>
-              <h2>{dinosaur.name}</h2>
-              <h1>{dinosaur.price}</h1>
-              <h1>{dinosaur.image}</h1>
-              <button
-                onClick={() => {
-                  this.handleRemove(dinosaur)
-                }}
-              >
-                Remove From Cart
-              </button>
-            </ul>
-          )
-        })}
-        <button
-          onClick={() => {
-            this.handleCheckout()
-          }}
-        >
-          Checkout
-        </button>
-      </div>
-    )
-  }
+	render() {
+		const {cart} = this.props
+		return (
+			<div>
+				{cart.map(dinosaur => {
+					return (
+						<ul key={dinosaur.id}>
+							<h2>{dinosaur.name}</h2>
+							<h1>{dinosaur.price}</h1>
+							<h1>{dinosaur.image}</h1>
+							<button
+								onClick={() => {
+									this.handleRemove(dinosaur)
+								}}
+							>
+								Remove From Cart
+							</button>
+						</ul>
+					)
+				})}
+				<Elements>
+					<CheckoutForm />
+				</Elements>
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = state => ({
