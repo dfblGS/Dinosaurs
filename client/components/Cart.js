@@ -24,11 +24,13 @@ export class Cart extends Component {
 		return (
 			<div>
 				{cart.map(dinosaur => {
+					console.log(dinosaur)
 					return (
 						<ul key={dinosaur.id}>
 							<h2>{dinosaur.name}</h2>
-							<h1>{dinosaur.price}</h1>
+							<h1>{dinosaur.price*dinosaur.quantity}</h1>
 							<h1>{dinosaur.image}</h1>
+							<h1>{dinosaur.quantity}</h1>
 							<button
 								onClick={() => {
 									this.handleRemove(dinosaur)
