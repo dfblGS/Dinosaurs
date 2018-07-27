@@ -11,13 +11,10 @@ class CheckoutForm extends Component {
   async submit(event) {
   	event.preventDefault()
   	//Invalid API key, make sure they're working
-  	let {token} = await this.props.stripe.createToken({customer: "Yunanee"});
-  	console.log(token)
+  	let {token} = await this.props.stripe.createToken();
+  	token.price = 3000;
   	let response = await axios.post("/api/charge", token);
-
-  	if (response.ok) {
-  		console.log("Completed purchase")
-  	}
+    console.log(response)
     // User clicked submit
   }
 
