@@ -8,7 +8,9 @@ const App = () => {
   return (
     <div>
       <Navbar />
+      <StripeProvider apiKey="pk_test_GKUMqeseDGXOsuw2SgZaZhhh">
       <Routes />
+      </StripeProvider>
     </div>
   )
 }

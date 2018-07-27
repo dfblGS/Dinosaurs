@@ -7,6 +7,7 @@ class CardSection extends React.Component {
       <label>
         Card details
         <CardElement />
+        <PostalCodeElement
       </label>
     );
   }
