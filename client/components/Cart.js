@@ -47,7 +47,7 @@ export class Cart extends Component {
 				Your total is: ${total/100}
 				</div>
 				<Elements>
-					<CheckoutForm />
+					<CheckoutForm total={total}/>
 				</Elements>
 			</div>
 		)
