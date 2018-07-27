@@ -48,8 +48,10 @@ const cartReducer = (state = initialState, action) => {
           break
         }
       }
-      state[newIndex].quantity += 1
-      return state
+      let newQuantity = state[newIndex].quantity + 1
+      return {...state, [newIndex]: {
+      		...state[newIndex], quantity: newQuantity
+      }}
     default:
       return state
   }
