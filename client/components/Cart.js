@@ -22,7 +22,8 @@ export class Cart extends Component {
 	render() {
 		const {cart} = this.props
 		console.log(cart)
-		let total = 0
+    let total = 0
+    console.log(window.localStorage)
 		return (
 			<div>
 				{cart.map(dinosaur => {

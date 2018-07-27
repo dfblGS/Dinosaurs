@@ -21,8 +21,10 @@ export class HomePage extends Component {
       })
     ) {
       this.props.updateCart(dinosaur)
+      window.localStorage.setItem(dinosaur.name, Number(window.localStorage.getItem(dinosaur.name)) + 1) 
     } else {
       this.props.addToCart(dinosaur)
+      window.localStorage.setItem(dinosaur.name, 1)
     }
     this.props.history.push('/cart')
   }
