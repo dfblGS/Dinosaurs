@@ -5,19 +5,19 @@ import CheckoutForm from './CheckoutForm'
 import {Elements} from 'react-stripe-elements'
 
 export class Cart extends Component {
-	constructor() {
-		super()
-		this.handleRemove = this.handleRemove.bind(this)
-		this.handleCheckout = this.handleCheckout.bind(this)
-	}
+  constructor() {
+    super()
+    this.handleRemove = this.handleRemove.bind(this)
+    this.handleCheckout = this.handleCheckout.bind(this)
+  }
 
-	handleRemove(dinosaur) {
-		this.props.removeFromCart(dinosaur)
-	}
+  handleRemove(dinosaur) {
+    this.props.removeFromCart(dinosaur)
+  }
 
-	handleCheckout() {
-		this.props.checkout()
-	}
+  handleCheckout() {
+    this.props.checkout()
+  }
 
 	render() {
 		const {cart} = this.props
@@ -48,15 +48,12 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-	cart: state.cart
+  cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
-	removeFromCart: dinosaur => dispatch(removeFromCart(dinosaur)),
-	checkout: () => dispatch(checkout())
+  removeFromCart: dinosaur => dispatch(removeFromCart(dinosaur)),
+  checkout: () => dispatch(checkout())
 })
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

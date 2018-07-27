@@ -17,9 +17,11 @@ export class HomePage extends Component {
 
   handleClick(dinosaur) {
     this.props.addToCart(dinosaur)
+    this.props.history.push('/cart')
   }
 
   render() {
+    console.log(this.props)
     const {dinosaurs} = this.props
     return (
       <div>
@@ -34,11 +36,11 @@ export class HomePage extends Component {
                 <h1>{data.price}</h1>
                 <h1>{data.description}</h1>
                 <button
-                  onClick={() => {
-                    this.handleClick(data)
-                  }}
+                onClick={() => {
+                  this.handleClick(data)
+                }}
                 >
-                  Add To Cart
+                Add To Cart
                 </button>
               </ul>
             )
