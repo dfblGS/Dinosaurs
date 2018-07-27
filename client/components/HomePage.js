@@ -20,17 +20,14 @@ export class HomePage extends Component {
         return dino.name === dinosaur.name
       })
     ) {
-      console.log("Updating cart")
       this.props.updateCart(dinosaur)
     } else {
-      console.log("Adding cart")
       this.props.addToCart(dinosaur)
     }
     this.props.history.push('/cart')
   }
 
   render() {
-    console.log(this.props)
     const {dinosaurs} = this.props
     return (
       <div>
