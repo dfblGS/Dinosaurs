@@ -16,7 +16,7 @@ class CheckoutForm extends Component {
     try {
       event.preventDefault()
       let {token} = await this.props.stripe.createToken()
-      token.price = 3000
+      token.price = this.props.total
       let response = await axios.post('/api/charge', token)
       console.log(response)
       if (response.status === 200) {

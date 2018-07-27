@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
-import {addToCart} from '../store/cartReducer'
+import {addToCart, updateCart} from '../store/cartReducer'
 
 export class HomePage extends Component {
   constructor() {
@@ -12,16 +12,22 @@ export class HomePage extends Component {
   componentDidMount() {
     console.log(this.props)
     this.props.fetchDinosaurs()
-
   }
 
   handleClick(dinosaur) {
-    this.props.addToCart(dinosaur)
+    if (
+      this.props.cart.find(dino => {
+        return dino.name === dinosaur.name
+      })
+    ) {
+      this.props.updateCart(dinosaur)
+    } else {
+      this.props.addToCart(dinosaur)
+    }
     this.props.history.push('/cart')
   }
 
   render() {
-    console.log(this.props)
     const {dinosaurs} = this.props
     return (
       <div>
@@ -36,11 +42,11 @@ export class HomePage extends Component {
                 <h1>{data.price}</h1>
                 <h1>{data.description}</h1>
                 <button
-                onClick={() => {
-                  this.handleClick(data)
-                }}
+                  onClick={() => {
+                    this.handleClick(data)
+                  }}
                 >
-                Add To Cart
+                  Add To Cart
                 </button>
               </ul>
             )
@@ -58,7 +64,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchDinosaurs: () => dispatch(fetchDinosaurs()),
-  addToCart: dinosaur => dispatch(addToCart(dinosaur))
+  addToCart: dinosaur => dispatch(addToCart(dinosaur)),
+  updateCart: dinosaur => dispatch(updateCart(dinosaur))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage)
