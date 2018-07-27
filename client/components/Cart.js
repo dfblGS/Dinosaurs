@@ -22,10 +22,11 @@ export class Cart extends Component {
 	render() {
 		const {cart} = this.props
 		console.log(cart)
+		let total = 0
 		return (
 			<div>
 				{cart.map(dinosaur => {
-					console.log(dinosaur)
+					total+=dinosaur.price*dinosaur.quantity
 					return (
 						<ul key={dinosaur.id}>
 							<h2>{dinosaur.name}</h2>
@@ -42,6 +43,9 @@ export class Cart extends Component {
 						</ul>
 					)
 				})}
+				<div>
+				Your total is: ${total/100}
+				</div>
 				<Elements>
 					<CheckoutForm />
 				</Elements>
