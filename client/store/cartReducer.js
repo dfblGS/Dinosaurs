@@ -49,9 +49,11 @@ const cartReducer = (state = initialState, action) => {
         }
       }
       let newQuantity = state[newIndex].quantity + 1
-      return {...state, [newIndex]: {
-      		...state[newIndex], quantity: newQuantity
-      }}
+      action.dinosaur.quantity = newQuantity
+      return state.map((dinosaur, index) => {
+      	if (index !== newIndex) {return dinosaur;}
+      	return {...dinosaur, ...action.dinosaur}
+      })
     default:
       return state
   }
