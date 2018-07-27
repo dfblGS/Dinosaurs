@@ -10,22 +10,26 @@ export class HomePage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    console.log(window.localStorage)
     this.props.fetchDinosaurs()
   }
 
   handleClick(dinosaur) {
-    if (
-      this.props.cart.find(dino => {
-        return dino.name === dinosaur.name
-      })
-    ) {
-      this.props.updateCart(dinosaur)
-      window.localStorage.setItem(dinosaur.name, Number(window.localStorage.getItem(dinosaur.name)) + 1) 
-    } else {
-      this.props.addToCart(dinosaur)
-      window.localStorage.setItem(dinosaur.name, 1)
-    }
+      if (
+        this.props.cart.find(dino => {
+          return dino.name === dinosaur.name
+        })
+      ) {
+        this.props.updateCart(dinosaur)
+        if(Object.keys(this.props.user).length === 0){
+          window.localStorage.setItem(dinosaur.name, Number(window.localStorage.getItem(dinosaur.name)) + 1)
+        }
+      } else {
+        this.props.addToCart(dinosaur)
+        if(Object.keys(this.props.user).length === 0){
+          window.localStorage.setItem(dinosaur.name, 1)
+        }
+      }
     this.props.history.push('/cart')
   }
 
@@ -61,7 +65,8 @@ export class HomePage extends Component {
 
 const mapStateToProps = state => ({
   dinosaurs: state.dinosaurs,
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
