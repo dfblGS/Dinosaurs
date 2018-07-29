@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
 import {addToCart, updateCart} from '../store/cartReducer'
+import Button from '@material-ui/core/Button'
 
 export class HomePage extends Component {
   constructor() {
@@ -10,8 +11,20 @@ export class HomePage extends Component {
   }
 
   componentDidMount() {
-    console.log(window.localStorage)
     this.props.fetchDinosaurs()
+    // const localStorageArr = []
+    // if(Object.keys(this.props.user).length === 0){ //why is it 0 when there is a user logged in?
+    //   for (let i = 0; i < localStorage.length; i++){
+    //     localStorageArr.push(localStorage.key(i))
+    //   }
+    //   let sliced = localStorageArr.slice(0, -2)
+    //   for (let j = 0; j < sliced.length; j++){
+    //     // this.props.updateCart(sliced[j])
+    //     if(this.props.cart.find(dino => {
+    //       dino.name === sliced[j] ?  this.props.updateCart(dino): null
+    //     })
+    //   }
+    // }
   }
 
   handleClick(dinosaur) {
@@ -47,13 +60,13 @@ export class HomePage extends Component {
                 <h2>{data.name}</h2>
                 <h1>{data.price}</h1>
                 <h1>{data.description}</h1>
-                <button
+                <Button variant="contained" color="primary"
                   onClick={() => {
                     this.handleClick(data)
                   }}
                 >
                   Add To Cart
-                </button>
+                </Button>
               </ul>
             )
           })
