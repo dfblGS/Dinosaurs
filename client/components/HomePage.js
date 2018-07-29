@@ -12,19 +12,21 @@ export class HomePage extends Component {
 
   componentDidMount() {
     this.props.fetchDinosaurs()
-    // const localStorageArr = []
-    // if(Object.keys(this.props.user).length === 0){ //why is it 0 when there is a user logged in?
-    //   for (let i = 0; i < localStorage.length; i++){
-    //     localStorageArr.push(localStorage.key(i))
-    //   }
-    //   let sliced = localStorageArr.slice(0, -2)
-    //   for (let j = 0; j < sliced.length; j++){
-    //     // this.props.updateCart(sliced[j])
-    //     if(this.props.cart.find(dino => {
-    //       dino.name === sliced[j] ?  this.props.updateCart(dino): null
-    //     })
-    //   }
-    // }
+    const localStorageArr = []
+    if(Object.keys(this.props.user).length === 0){ //why is it 0 when there is a user logged in?
+      for (let i = 0; i < localStorage.length; i++){
+        localStorageArr.push(localStorage.key(i))
+      }
+      let sliced = localStorageArr.slice(0, -2)
+      console.log(sliced)
+      for (let j = 0; j < sliced.length; j++){
+        this.props.cart.find((dino) => {
+          if (dino.name === sliced[j]){
+            this.props.updateCart(dino)
+          }
+        })
+      }
+    }
   }
 
   handleClick(dinosaur) {
