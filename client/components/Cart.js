@@ -9,16 +9,10 @@ export class Cart extends Component {
     super()
     this.handleRemove = this.handleRemove.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
-	}
-	
-	// componentDidMount(){
-	// 	window.localStorage.setItem('cart', JSON.stringify(this.props.cart))
-	// 	console.log(window.localStorage)
-	// }
-
+  }
 
   handleRemove(dinosaur) {
-		this.props.removeFromCart(dinosaur)
+    this.props.removeFromCart(dinosaur)
   }
 
   handleCheckout() {
@@ -28,7 +22,6 @@ export class Cart extends Component {
   render() {
     const {cart} = this.props
 		window.localStorage.setItem('cart', JSON.stringify(cart))
-		console.log('hello')
     let total = 0
     return (
       <div>
