@@ -1,3 +1,5 @@
+import Axios from 'axios'
+
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const CHECKOUT = 'CHECKOUT'
@@ -20,14 +22,14 @@ export const checkout = () => ({
 })
 
 export const updateCart = dinosaur => ({
-	type: UPDATE_CART,
-	dinosaur
+  type: UPDATE_CART,
+  dinosaur
 })
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      action.dinosaur.quantity = 1;
+      action.dinosaur.quantity = 1
       return [...state, action.dinosaur]
     case REMOVE_FROM_CART:
       let indexOf
@@ -51,8 +53,10 @@ const cartReducer = (state = initialState, action) => {
       let newQuantity = state[newIndex].quantity + 1
       action.dinosaur.quantity = newQuantity
       return state.map((dinosaur, index) => {
-      	if (index !== newIndex) {return dinosaur;}
-      	return {...dinosaur, ...action.dinosaur}
+        if (index !== newIndex) {
+          return dinosaur
+        }
+        return {...dinosaur, ...action.dinosaur}
       })
     default:
       return state
