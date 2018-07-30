@@ -25,44 +25,9 @@ export class Cart extends Component {
     this.props.checkout()
   }
 
-<<<<<<< HEAD
-	render() {
-		const {cart} = this.props
-		window.localStorage.setItem('cart', JSON.stringify(cart))
-    let total = 0
-		return (
-			<div>
-				{cart.map(dinosaur => {
-					total+=dinosaur.price*dinosaur.quantity
-					return (
-						<ul key={dinosaur.id}>
-							<h2>{dinosaur.name}</h2>
-							<h1>{dinosaur.price*dinosaur.quantity}</h1>
-							<h1>{dinosaur.image}</h1>
-							<h1>{dinosaur.quantity}</h1>
-							<button
-								onClick={() => {
-									this.handleRemove(dinosaur)
-								}}
-							>
-								Remove From Cart
-							</button>
-						</ul>
-					)
-				})}
-				<div>
-				Your total is: ${total/100}
-				</div>
-				<Elements>
-					<CheckoutForm total={total}/>
-				</Elements>
-			</div>
-		)
-	}
-=======
   render() {
     const {cart} = this.props
-    console.log(cart)
+    window.localStorage.setItem('cart', JSON.stringify(cart))
     let total = 0
     return (
       <div>
@@ -105,7 +70,6 @@ export class Cart extends Component {
       </div>
     )
   }
->>>>>>> master
 }
 
 const mapStateToProps = state => ({
