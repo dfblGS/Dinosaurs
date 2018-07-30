@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import HomePage from './components/HomePage'
 import Cart from './components/Cart'
+import ReceiptPage from './components/ReceiptPage'
 
 /**
  * COMPONENT
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/receipt" component={ReceiptPage} />
         <Route path="/" component={HomePage} />
         {isLoggedIn && (
           <Switch>

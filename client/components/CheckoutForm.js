@@ -28,12 +28,12 @@ class CheckoutForm extends Component {
   }
 
   render() {
-    if (this.state.setRedirect) {return (<Redirect to={'/'} />)}
+    if (this.state.setRedirect) {return (<Redirect to={'/Receipt'} />)}
     return (
       <div className="checkout">
         <p>Would you like to complete the purchase?</p>
         <CardElement />
-        <button onClick={this.submit}>Send</button>
+        <button onClick={this.submit}>Checkout</button>
       </div>
     )
   }
