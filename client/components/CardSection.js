@@ -1,5 +1,5 @@
-import React from 'react';
-import {CardElement} from 'react-stripe-elements';
+import React from 'react'
+import {CardElement} from 'react-stripe-elements'
 
 class CardSection extends React.Component {
   render() {
@@ -7,10 +7,9 @@ class CardSection extends React.Component {
       <label>
         Card details
         <CardElement />
-        <PostalCodeElement
       </label>
-    );
+    )
   }
 }
 
-export default CardSection;
+export default CardSection
