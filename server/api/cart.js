@@ -12,8 +12,10 @@ router.post('/:userId', async (req, res, next) => {
       include: [{all: true, nested: true}]
     })
 
-    const dinosaurs = req.body
-    console.log(dinosaurs)
+    // const allDinos = [...req.body, ...cart.dinosaurs]
+    // const finalDinos = allDinos.filter((dino, index) => {
+    //   return index === (dino.id || dino.dinosaurId)
+    // })
 
     if (!wasCreated) res.json(cart)
     else res.send()

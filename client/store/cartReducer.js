@@ -46,11 +46,11 @@ export const fetchByIdAndUpdateCart = (id, cart) => async dispatch => {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ONE_CART:
-      const foundCart = state.cart.find(cart => cart.id === action.cart.id)
-      if (foundCart) {
-        return [...state, state.cart.map()]
-      }
+    // case GET_ONE_CART:
+    //   const foundCart = state.cart.find(cart => cart.id === action.cart.id)
+    //   if (foundCart) {
+    //     return [...state, state.cart.map()]
+    //   }
     case ADD_TO_CART:
       action.dinosaur.quantity = 1
       return [...state, action.dinosaur]
