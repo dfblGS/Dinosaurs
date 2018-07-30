@@ -19,39 +19,51 @@ export class Cart extends Component {
     this.props.checkout()
   }
 
-	render() {
-		const {cart} = this.props
-		console.log(cart)
-		let total = 0
-		return (
-			<div>
-				{cart.map(dinosaur => {
-					total+=dinosaur.price*dinosaur.quantity
-					return (
-						<ul key={dinosaur.id}>
-							<h2>{dinosaur.name}</h2>
-							<h1>{dinosaur.price*dinosaur.quantity}</h1>
-							<h1>{dinosaur.image}</h1>
-							<h1>{dinosaur.quantity}</h1>
-							<button
-								onClick={() => {
-									this.handleRemove(dinosaur)
-								}}
-							>
-								Remove From Cart
-							</button>
-						</ul>
-					)
-				})}
-				<div>
-				Your total is: ${total/100}
-				</div>
-				<Elements>
-					<CheckoutForm total={total}/>
-				</Elements>
-			</div>
-		)
-	}
+  render() {
+    const {cart} = this.props
+    console.log(cart)
+    let total = 0
+    return (
+      <div>
+        {cart.map(dinosaur => {
+          total += dinosaur.price * dinosaur.quantity
+          return (
+            <ul key={dinosaur.id}>
+              <h2>{dinosaur.name}</h2>
+              <img src={dinosaur.imageUrl} />
+              <h1>Quantity: {dinosaur.quantity}</h1>
+              <h1>
+                Total price of {dinosaur.name}'s:{' '}
+                {(dinosaur.price * dinosaur.quantity / 100).toLocaleString(
+                  'en-US',
+                  {style: 'currency', currency: 'USD'}
+                )}
+              </h1>
+              <button
+                onClick={() => {
+                  this.handleRemove(dinosaur)
+                }}
+              >
+                Remove From Cart
+              </button>
+            </ul>
+          )
+        })}
+        <div>
+          <h1>
+            Your total is:{' '}
+            {(total / 100).toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD'
+            })}
+          </h1>
+        </div>
+        <Elements>
+          <CheckoutForm total={total} />
+        </Elements>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
