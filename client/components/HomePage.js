@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
 import {addToCart, updateCart} from '../store/cartReducer'
+import Button from '@material-ui/core/Button'
 
 export class HomePage extends Component {
   constructor() {
@@ -37,22 +38,20 @@ export class HomePage extends Component {
           dinosaurs.map(data => {
             return (
               <ul key={data.id}>
-                <img src={data.imageUrl} />
-                <h2>{data.name}</h2>
-                <h1>
-                  {(data.price / 100).toLocaleString('en-US', {
-                    style: 'currency',
-                    currency: 'USD'
-                  })}
-                </h1>
-                <h1>{data.description}</h1>
-                <button
+                <img src={data.imageUrl} className="mainPagePicture"/>
+                <h1>{data.name}</h1>
+                <h2>{(data.price/ 100).toLocaleString(
+                  'en-US',
+                  {style: 'currency', currency: 'USD'}
+                )}</h2>
+                <h4>{data.description}</h4>
+                <Button variant='contained' color="primary"
                   onClick={() => {
                     this.handleClick(data)
                   }}
                 >
                   Add To Cart
-                </button>
+                </Button>
               </ul>
             )
           })
