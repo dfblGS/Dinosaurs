@@ -18,7 +18,6 @@ export class HomePage extends Component {
         localStorageArr.push(localStorage.key(i))
       }
       let sliced = localStorageArr.slice(0, -2)
-      console.log(sliced)
       for (let j = 0; j < sliced.length; j++){
         this.props.cart.find((dino) => {
           if (dino.name === sliced[j]){
@@ -36,19 +35,13 @@ export class HomePage extends Component {
         })
       ) {
         this.props.updateCart(dinosaur)
-        if(Object.keys(this.props.user).length === 0){
-          window.localStorage.setItem(dinosaur.name, Number(window.localStorage.getItem(dinosaur.name)) + 1)
-        }
       } else {
         this.props.addToCart(dinosaur)
-        if(Object.keys(this.props.user).length === 0){
-          window.localStorage.setItem(dinosaur.name, 1)
-        }
       }
-    this.props.history.push('/cart')
-  }
-
-  render() {
+      this.props.history.push('/cart')
+    }
+    
+    render() {
     const {dinosaurs} = this.props
     return (
       <div>
@@ -78,11 +71,15 @@ export class HomePage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  dinosaurs: state.dinosaurs,
-  cart: state.cart,
-  user: state.user
-})
+const mapStateToProps = state => {
+  return {
+    dinosaurs: state.dinosaurs,
+    cart: state.cart,
+    user: state.user
+
+  }
+  
+}
 
 const mapDispatchToProps = dispatch => ({
   fetchDinosaurs: () => dispatch(fetchDinosaurs()),
