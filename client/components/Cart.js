@@ -21,7 +21,8 @@ export class Cart extends Component {
 
   render() {
     const {cart} = this.props
-		window.localStorage.setItem('cart', JSON.stringify(cart))
+    const cartString = JSON.stringify(cart)
+		window.localStorage.setItem('cart', cartString)
     let total = 0
     return (
       <div>
@@ -59,7 +60,7 @@ export class Cart extends Component {
           </h1>
         </div>
         <Elements>
-          <CheckoutForm total={total} />
+          <CheckoutForm total={total} order={this.props.cart}/>
         </Elements>
       </div>
     )
