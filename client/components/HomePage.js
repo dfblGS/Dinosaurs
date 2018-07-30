@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
 import {addToCart, updateCart} from '../store/cartReducer'
+import Button from '@material-ui/core/Button'
 
 export class HomePage extends Component {
   constructor() {
@@ -10,24 +11,37 @@ export class HomePage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchDinosaurs()
+    const localStorageArr = []
+    if(Object.keys(this.props.user).length === 0){ //why is it 0 when there is a user logged in?
+      for (let i = 0; i < localStorage.length; i++){
+        localStorageArr.push(localStorage.key(i))
+      }
+      let sliced = localStorageArr.slice(0, -2)
+      for (let j = 0; j < sliced.length; j++){
+        this.props.cart.find((dino) => {
+          if (dino.name === sliced[j]){
+            this.props.updateCart(dino)
+          }
+        })
+      }
+    }
   }
 
   handleClick(dinosaur) {
-    if (
-      this.props.cart.find(dino => {
-        return dino.name === dinosaur.name
-      })
-    ) {
-      this.props.updateCart(dinosaur)
-    } else {
-      this.props.addToCart(dinosaur)
+      if (
+        this.props.cart.find(dino => {
+          return dino.name === dinosaur.name
+        })
+      ) {
+        this.props.updateCart(dinosaur)
+      } else {
+        this.props.addToCart(dinosaur)
+      }
+      this.props.history.push('/cart')
     }
-    this.props.history.push('/cart')
-  }
-
-  render() {
+    
+    render() {
     const {dinosaurs} = this.props
     return (
       <div>
@@ -41,13 +55,13 @@ export class HomePage extends Component {
                 <h2>{data.name}</h2>
                 <h1>{data.price}</h1>
                 <h1>{data.description}</h1>
-                <button
+                <Button variant="contained" color="primary"
                   onClick={() => {
                     this.handleClick(data)
                   }}
                 >
                   Add To Cart
-                </button>
+                </Button>
               </ul>
             )
           })
@@ -57,10 +71,15 @@ export class HomePage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  dinosaurs: state.dinosaurs,
-  cart: state.cart
-})
+const mapStateToProps = state => {
+  return {
+    dinosaurs: state.dinosaurs,
+    cart: state.cart,
+    user: state.user
+
+  }
+  
+}
 
 const mapDispatchToProps = dispatch => ({
   fetchDinosaurs: () => dispatch(fetchDinosaurs()),
