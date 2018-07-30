@@ -7,6 +7,7 @@ import {me} from './store'
 import HomePage from './components/HomePage'
 import Cart from './components/Cart'
 import ReceiptPage from './components/ReceiptPage'
+import {fetchFromLocalStorage} from './store/cartReducer'
 
 /**
  * COMPONENT
@@ -14,6 +15,10 @@ import ReceiptPage from './components/ReceiptPage'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    const cartString = window.localStorage.getItem('cart')
+    const cart = JSON.parse(cartString)
+    this.props.fetchFromLocalStorage(cart)
+
   }
 
   render() {
@@ -55,7 +60,8 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-    }
+    },
+    fetchFromLocalStorage: dinosaurs => dispatch(fetchFromLocalStorage(dinosaurs))
   }
 }
 

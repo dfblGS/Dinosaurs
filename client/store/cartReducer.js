@@ -2,8 +2,14 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const CHECKOUT = 'CHECKOUT'
 const UPDATE_CART = 'UPDATE_CART'
+const FETCH_FROM_LOCAL_STORAGE = 'FETCH_FROM_LOCAL_STORAGE'
 
 const initialState = []
+
+export const fetchFromLocalStorage = dinosaurs => ({
+  type: FETCH_FROM_LOCAL_STORAGE,
+  dinosaurs
+})
 
 export const addToCart = dinosaur => ({
   type: ADD_TO_CART,
@@ -54,6 +60,10 @@ const cartReducer = (state = initialState, action) => {
       	if (index !== newIndex) {return dinosaur;}
       	return {...dinosaur, ...action.dinosaur}
       })
+
+      case FETCH_FROM_LOCAL_STORAGE:
+        return action.dinosaurs
+
     default:
       return state
   }
