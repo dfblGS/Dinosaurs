@@ -50,7 +50,7 @@ async function seed() {
       description:
         'Baby Bop is a green Triceratops, who was originally two years old, but turned three in "Look at Me, I\'m 3!"". Baby Bop has been on the show since July 29, 1991. She made her debut in the video "Barney in Concert". She wears a pink bow and pink ballet slippers, and carries a yellow security blanket. She sings the song "My Yellow Blankey" to show how much her security blanket means to her. She likes to eat macaroni and cheese and pizza. She is the younger sister of B.J..',
       imageUrl:
-        'https://vignette.wikia.nocookie.net/barney/images/b/ba/Mexico_bb.JPG/revision/latest?cb=20110326065819'
+        'https://vignette.wikia.nocookie.net/universalstudios/images/e/e7/Baby_Bop_Sprite_HD.png/revision/latest?cb=20170421214542'
     })
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
