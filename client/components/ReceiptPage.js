@@ -6,10 +6,14 @@ export class Receipt extends Component {
 	constructor(props) {
 		super(props)
 		this.handleCheckout = this.handleCheckout.bind(this)
+		this.state = {
+			cart: []
+		}
 	}
 
-	componentDidMount() {
-		const cart = this.props.cart
+	async componentDidMount() {
+		this.setState({cart: await this.props.cart})
+		this.handleCheckout();
 	}
 
 	handleCheckout() {
@@ -17,6 +21,7 @@ export class Receipt extends Component {
 	}
 
 	render() {
+		const cart = this.state.cart
 		let total = 0;
 		return (
 			<div>
