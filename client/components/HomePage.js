@@ -39,7 +39,12 @@ export class HomePage extends Component {
               <ul key={data.id}>
                 <img src={data.imageUrl} />
                 <h2>{data.name}</h2>
-                <h1>{data.price}</h1>
+                <h1>
+                  {(data.price / 100).toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                  })}
+                </h1>
                 <h1>{data.description}</h1>
                 <button
                   onClick={() => {

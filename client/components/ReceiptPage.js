@@ -14,6 +14,7 @@ export class Receipt extends Component {
 	async componentDidMount() {
 		this.setState({cart: await this.props.cart})
 		this.handleCheckout()
+		localStorage.clear()
 	}
 
 	handleCheckout() {

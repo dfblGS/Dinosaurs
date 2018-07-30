@@ -16,12 +16,14 @@ class CheckoutForm extends Component {
   async submit(event) {
     try {
       event.preventDefault()
+
       let userEmail
       if (this.props.isLoggedIn) {
         userEmail = this.props.user.email
       } else {
         userEmail = 'Guest'
       }
+
       let {token} = await this.props.stripe.createToken({name: userEmail})
       this.props.order.forEach(dinosaur => {
         delete dinosaur.description
@@ -30,6 +32,7 @@ class CheckoutForm extends Component {
         delete dinosaur.createdAt
         delete dinosaur.updatedAt
       })
+      
       let userOrder = JSON.stringify(this.props.order)
       let userToken = token.id
       token.price = this.props.total

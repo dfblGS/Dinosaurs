@@ -24,6 +24,11 @@ export class Cart extends Component {
     const cartString = JSON.stringify(cart)
 		window.localStorage.setItem('cart', cartString)
     let total = 0
+    if (cart.length === 0) {
+      return (
+        <div> Your cart is empty. </div>
+        )
+    }
     return (
       <div>
         {cart.map(dinosaur => {
