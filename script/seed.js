@@ -2,6 +2,7 @@
 
 const db = require('../server/db')
 const {Dinosaurs} = require('../server/db/models')
+const {User} = require('../server/db/models')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -20,6 +21,12 @@ async function seed() {
   console.log('db synced!')
   // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
   // executed until that promise resolves!
+
+  const users = await Promise.all([
+    User.create({email: 'cody@email.com', password: '123'}),
+    User.create({email: 'murphy@email.com', password: '123'})
+  ])
+
   const dinos = await Promise.all([
     Dinosaurs.create({
       name: 'Barney',
@@ -43,11 +50,12 @@ async function seed() {
       description:
         'Baby Bop is a green Triceratops, who was originally two years old, but turned three in "Look at Me, I\'m 3!"". Baby Bop has been on the show since July 29, 1991. She made her debut in the video "Barney in Concert". She wears a pink bow and pink ballet slippers, and carries a yellow security blanket. She sings the song "My Yellow Blankey" to show how much her security blanket means to her. She likes to eat macaroni and cheese and pizza. She is the younger sister of B.J..',
       imageUrl:
-        'https://vignette.wikia.nocookie.net/barney/images/b/ba/Mexico_bb.JPG/revision/latest?cb=20110326065819'
+        'https://vignette.wikia.nocookie.net/universalstudios/images/e/e7/Baby_Bop_Sprite_HD.png/revision/latest?cb=20170421214542'
     })
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
+  console.log(`seeded ${users.length} users`)
   console.log(`seeded ${dinos.length} dinosaurs`)
   console.log(`seeded successfully`)
 }
