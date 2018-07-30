@@ -21,7 +21,7 @@ export class Cart extends Component {
 
   render() {
     const {cart} = this.props
-    console.log(cart)
+		window.localStorage.setItem('cart', JSON.stringify(cart))
     let total = 0
     return (
       <div>
