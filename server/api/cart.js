@@ -2,17 +2,21 @@ const router = require('express').Router()
 const {Cart, CartDino} = require('../db/models')
 module.exports = router
 
-router.get('/:userId', async (req, res, next) => {
+router.post('/:userId', async (req, res, next) => {
   try {
     const [cart, wasCreated] = await Cart.findOrCreate({
       where: {
-        id: this.userId
-      }
+        userId: req.params.userId,
+        active: true
+      },
+      include: [{all: true, nested: true}]
     })
-    console.log('CART:', cart)
-    console.log('WASCREATED:', wasCreated)
 
-    res.json(cart)
+    const dinosaurs = req.body
+    console.log(dinosaurs)
+
+    if (!wasCreated) res.json(cart)
+    else res.send()
   } catch (error) {
     next(error)
   }

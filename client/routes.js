@@ -7,7 +7,10 @@ import {me} from './store'
 import HomePage from './components/HomePage'
 import Cart from './components/Cart'
 import ReceiptPage from './components/ReceiptPage'
-import {fetchFromLocalStorage} from './store/cartReducer'
+import {
+  fetchFromLocalStorage,
+  fetchByIdAndUpdateCart
+} from './store/cartReducer'
 
 /**
  * COMPONENT
@@ -17,8 +20,10 @@ class Routes extends Component {
     this.props.loadInitialData()
     const cartString = window.localStorage.getItem('cart')
     const cart = JSON.parse(cartString)
-    this.props.fetchFromLocalStorage(cart)
-
+    if (!this.props.isLoggedIn) this.props.fetchFromLocalStorage(cart)
+    else {
+      this.props.fetchByIdAndUpdateCart(this.props.id, cart)
+    }
   }
 
   render() {
@@ -52,7 +57,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    id: state.user.id
   }
 }
 
@@ -61,7 +67,10 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
     },
-    fetchFromLocalStorage: dinosaurs => dispatch(fetchFromLocalStorage(dinosaurs))
+    fetchFromLocalStorage: dinosaurs =>
+      dispatch(fetchFromLocalStorage(dinosaurs)),
+    fetchByIdAndUpdateCart: (id, cart) =>
+      dispatch(fetchByIdAndUpdateCart(id, cart))
   }
 }
 
