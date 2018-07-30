@@ -2,6 +2,7 @@ const User = require('./user')
 const Dinosaurs = require('./dinosaur')
 const Cart = require('./cart')
 const CartDino = require('./cartDino')
+const OrderHistories = require('./orderHistory')
 
 User.hasMany(Cart)
 Cart.belongsTo(User)
@@ -26,5 +27,6 @@ module.exports = {
   User,
   Dinosaurs,
   Cart,
-  CartDino
+  CartDino,
+  OrderHistories
 }
