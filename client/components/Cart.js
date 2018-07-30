@@ -30,7 +30,7 @@ export class Cart extends Component {
           return (
             <ul key={dinosaur.id}>
               <h2>{dinosaur.name}</h2>
-              <img src={dinosaur.imageUrl} />
+              <img src={dinosaur.imageUrl} height='150' width='150'/>
               <h1>Quantity: {dinosaur.quantity}</h1>
               <h1>
                 Total price of {dinosaur.name}'s:{' '}
