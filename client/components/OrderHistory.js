@@ -29,8 +29,12 @@ class OrderHistory extends Component {
 				{orderHistory.map(order => {
 					return (
 						<div>
-							{order.userOrder}
-							{order.userToken}
+							Token: {order.userToken}
+							<div>
+							Order details: {JSON.parse(order.userOrder).map(dinosaur => {
+								return (<div>Name: {dinosaur.name} | Quantity: {dinosaur.quantity} | Price: {dinosaur.price}</div>)
+							})}
+							</div>
 						</div>
 					)
 				})}
