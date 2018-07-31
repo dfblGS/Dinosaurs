@@ -34,3 +34,11 @@ form div {
   height:64px;
   width:64px;
 }
+
+.legal{
+  opacity: 1
+}
+
+.dinosaurs {
+  display: flex
+}

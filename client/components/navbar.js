@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 const Navbar = ({handleClick, isLoggedIn, user}) => (
   <div>
     
-    <Link to="/"><img className="dinoGif" src="https://giant.gfycat.com/KaleidoscopicClearCoyote.gif"/><h1>DinoShopper</h1></Link>
+    <Link to="/"><img className="dinoGif" src="https://giant.gfycat.com/KaleidoscopicClearCoyote.gif"/></Link>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -37,7 +37,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
       <div>
         <Link to="/cart"><img className="cartPic" src="http://www.iconninja.com/files/572/961/214/shopping-cart-icon.png"/></Link>
       </div>
-      <h7>The DinoShopper® trade mark as well as all trade marks, whether they are figurative or not, and all other marks, trade names, service marks, brand names, business names, illustrations, images, logos which appear on our Products, the Platforms, accessories or packaging, whether registered or not (the "Trade Marks"), are and remain the exclusive property of DinoShopper® and/or its licensors and are protected by applicable trade mark laws, regulations, directives, rules, and treaties around the world. All such rights are reserved </h7>
     </nav>
     <hr />
   </div>
