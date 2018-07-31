@@ -58,6 +58,11 @@ export const addCartDb = (dinosaur, userId) => async dispatch => {
   dispatch(addToCart(dinosaur))
 }
 
+export const removeFromDb = (dinosaur, userId) => async dispatch => {
+  await axios.delete(`api/cart/${userId}/${dinosaur.id}`)
+  dispatch(removeFromCart(dinosaur))
+}
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ONE_CART:

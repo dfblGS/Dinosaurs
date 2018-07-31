@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {removeFromCart, checkout} from '../store/cartReducer'
+import {removeFromCart, checkout, removeFromDb} from '../store/cartReducer'
 import CheckoutForm from './CheckoutForm'
 import {Elements} from 'react-stripe-elements'
 
@@ -13,7 +13,12 @@ export class Cart extends Component {
 
   handleRemove(dinosaur) {
     if(this.props.cart.length === 1) window.localStorage.clear()
-    this.props.removeFromCart(dinosaur)
+    const { user } = this.props
+    if(user.id){
+      this.props.removeFromDb(dinosaur, user.id)
+    } else{
+      this.props.removeFromCart(dinosaur)
+    }
   }
 
   handleCheckout() {
@@ -80,7 +85,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   removeFromCart: dinosaur => dispatch(removeFromCart(dinosaur)),
-  checkout: () => dispatch(checkout())
+  checkout: () => dispatch(checkout()),
+  removeFromDb: (dinosaur, userId) => dispatch(removeFromDb(dinosaur, userId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
