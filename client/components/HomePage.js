@@ -49,25 +49,27 @@ export class HomePage extends Component {
         ) : (
           <div className='dinosaurs'>
             {
-            dinosaurs.map(data => {
-              if ((new Date(data.expirationDate).getTime() - new Date().getTime()) > 0) {
-                return (
-                  <ul key={data.id} >
-                    <Dinosaurs data={data} />
-                    <div> Hurry, time is running out!
-                      <Countdown expiration={data.expirationDate} />
+              dinosaurs.map(data => {
+                if ((new Date(data.expirationDate).getTime() - new Date().getTime()) > 0) {
+                  return (
+                    <div className="dinosaur">
+                      <ul key={data.id} >
+                        <Dinosaurs data={data} />
+                        <div> Hurry, time is running out!
+                          <Countdown expiration={data.expirationDate} />
+                        </div>
+                        <Button variant='contained' color="primary"
+                          onClick={() => {
+                            this.handleClick(data)
+                          }}
+                        >
+                          Add To Cart
+                        </Button>
+                      </ul>
                     </div>
-                    <Button variant='contained' color="primary"
-                      onClick={() => {
-                        this.handleClick(data)
-                      }}
-                    >
-                      Add To Cart
-                    </Button>
-                  </ul>
-                )
-              }
-            })
+                  )
+                }
+              })
           }
           </div>
         )}
