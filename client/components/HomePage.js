@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
 import {addToCart, updateCart} from '../store/cartReducer'
+require('../../public/style.css')
 import Button from '@material-ui/core/Button'
+import Dinosaurs from './Dinosaurs'
+
+
 import Countdown from "./Countdown"
 
 export class HomePage extends Component {
@@ -36,31 +40,31 @@ export class HomePage extends Component {
         {!dinosaurs ? (
           <h1>Loading...</h1>
         ) : (
-          dinosaurs.map(data => {
-            if ((new Date(data.expirationDate).getTime() - new Date().getTime()) > 0) {
-            return (
-              <ul key={data.id}>
-                <img src={data.imageUrl} className="mainPagePicture"/>
-                <h1>{data.name}</h1>
-                <h2>{(data.price/ 100).toLocaleString(
-                  'en-US',
-                  {style: 'currency', currency: 'USD'}
-                )}</h2>
-                <h4>{data.description}</h4>
-                <Button variant='contained' color="primary"
-                  onClick={() => {
-                    this.handleClick(data)
-                  }}
-                >
-                  Add To Cart
-                </Button>
-                <div> Hurry, time is running out!
-                <Countdown expiration={data.expirationDate} />
-                </div>
-              </ul>
-            ) }
-          })
+          <div className='dinosaurs'>
+            {
+            dinosaurs.map(data => {
+              if ((new Date(data.expirationDate).getTime() - new Date().getTime()) > 0) {
+                return (
+                  <ul key={data.id} >
+                    <Dinosaurs data={data} />
+                    <div> Hurry, time is running out!
+                      <Countdown expiration={data.expirationDate} />
+                    </div>
+                    <Button variant='contained' color="primary"
+                      onClick={() => {
+                        this.handleClick(data)
+                      }}
+                    >
+                      Add To Cart
+                    </Button>
+                  </ul>
+                )
+              }
+            })
+          }
+          </div>
         )}
+        <small className="legal">The DinoShopper® trade mark as well as all trade marks, whether they are figurative or not, and all other marks, trade names, service marks, brand names, business names, illustrations, images, logos which appear on our Products, the Platforms, accessories or packaging, whether registered or not (the "Trade Marks"), are and remain the exclusive property of DinoShopper® and/or its licensors and are protected by applicable trade mark laws, regulations, directives, rules, and treaties around the world. All such rights are reserved</small>
       </div>
     )
   }
