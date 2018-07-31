@@ -7,7 +7,10 @@ import {me} from './store'
 import HomePage from './components/HomePage'
 import Cart from './components/Cart'
 import ReceiptPage from './components/ReceiptPage'
-import {fetchFromLocalStorage} from './store/cartReducer'
+import {
+  fetchFromLocalStorage,
+  fetchByIdAndUpdateCart
+} from './store/cartReducer'
 
 /**
  * COMPONENT
@@ -17,8 +20,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     const cartString = window.localStorage.getItem('cart')
     const cart = JSON.parse(cartString)
-    this.props.fetchFromLocalStorage(cart)
-
+    if (cart) this.props.fetchFromLocalStorage(cart)
   }
 
   render() {
@@ -28,8 +30,8 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/cart" component={Cart} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} userId={this.props.id} cart={this.props.cart}/>
+        <Route path="/signup" component={Signup} userId={this.props.id} cart={this.props.cart}/>
         <Route path="/receipt" component={ReceiptPage} />
         <Route path="/" component={HomePage} />
         {isLoggedIn && (
@@ -39,7 +41,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Login} userId={this.props.id} cart={this.props.cart}/>
       </Switch>
     )
   }
@@ -52,7 +54,9 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    id: state.user.id,
+    cart: state.cart
   }
 }
 
@@ -61,7 +65,10 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
     },
-    fetchFromLocalStorage: dinosaurs => dispatch(fetchFromLocalStorage(dinosaurs))
+    fetchFromLocalStorage: dinosaurs =>
+      dispatch(fetchFromLocalStorage(dinosaurs)),
+    // fetchByIdAndUpdateCart: (id, cart) =>
+    //   dispatch(fetchByIdAndUpdateCart(id, cart))
   }
 }
 
