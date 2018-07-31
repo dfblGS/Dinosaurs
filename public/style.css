@@ -42,3 +42,11 @@ form div {
 .dinosaurs {
   display: flex
 }
+.dinosaur {
+  flex-wrap: wrap;
+}
+
+.dancingDino{
+  height: 64px;
+  width: 64px;
+}

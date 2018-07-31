@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {checkout} from '../store/cartReducer'
+require('../../public/style.css')
 
 export class Receipt extends Component {
 	constructor(props) {
@@ -35,8 +36,11 @@ export class Receipt extends Component {
 						return (
 							<ul key={dinosaur.id}>
 								<h2>{dinosaur.name}</h2>
-								<h1>{dinosaur.price * dinosaur.quantity}</h1>
-								<h1>{dinosaur.image}</h1>
+								<h1>{((dinosaur.price * dinosaur.quantity)/100).toLocaleString('en-US', {
+									style: 'currency',
+									currency: 'USD'
+								})}</h1>
+								<img src={dinosaur.image}/>
 								<h1>{dinosaur.quantity}</h1>
 							</ul>
 						)
@@ -46,6 +50,7 @@ export class Receipt extends Component {
 						style: 'currency',
 						currency: 'USD'
 					})}
+					<img className="dancingDino" src="http://gifimage.net/wp-content/uploads/2017/10/dancing-dinosaur-gif-4.gif"/>
 				</div>
 			</div>
 		)

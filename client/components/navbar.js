@@ -13,14 +13,20 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
     <Link to="/"><img className="dinoGif" src="https://giant.gfycat.com/KaleidoscopicClearCoyote.gif"/></Link>
     <nav>
       {isLoggedIn ? (
-        <div>
-          <h3>Welcome {user.email}!</h3>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
+         <AppBar position="static">
+          <Toolbar>
+            <Typography variant="title">
+              <div>
+                <h3>Welcome {user.email}!</h3>
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home">Home</Link>
+                <a href="#" onClick={handleClick}>
+                  Logout
+                </a>
+              </div>
+            </Typography>
+          </Toolbar>
+        </AppBar>
       ) : (
         <AppBar position="static">
           <Toolbar>
