@@ -42,11 +42,11 @@ async function seed() {
       description:
         'B.J. is a seven-year-old yellow Protoceratops, B.J. has been on the show since September 27, 1993. He is the older brother of Baby Bop, whom he frequently calls "Sissy", but calls her by her name on rare occasions. He sings the song "B.J.\'s Song" about himself. He wears a red baseball cap and red sneakers. He lost his hat in the episode "Hats Off to B.J.!", and sometimes says things to hide his fears (for example, in the episode "Barney\'s Halloween Party", he was shocked by the paper spiders and after learning they were fake, he said "I knew that, sort of"). Pickles are his favorite food and he has tried them in various ways, such as on pizza.',
       imageUrl:
-        'https://statici.behindthevoiceactors.com/behindthevoiceactors/_img/chars/bj-barneys-night-before-christmas-4.12.jpg'
+        'https://pbs.twimg.com/profile_images/696076242626306048/asVlVqoB_400x400.jpg'
     }),
     Dinosaurs.create({
       name: 'Velociraptor',
-      price: 400000000,
+      price: 400000,
       description: "Velociraptor (/vɪˈlɒsɪræptər/; meaning 'swift seizer' in Latin) is a genus of dromaeosaurid theropod dinosaur that lived approximately 75 to 71 million years ago during the later part of the Cretaceous Period. Two species are currently recognized, although others have been assigned in the past. The type species is V. mongoliensis; fossils of this species have been discovered in Mongolia. A second species, V. osmolskae, was named in 2008 for skull material from Inner Mongolia, China.",
       imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Velociraptor_Restoration.png/220px-Velociraptor_Restoration.png",
       expirationDate: new Date(Date.now() + 120000)
@@ -55,7 +55,7 @@ async function seed() {
       name: 'Baby Bop',
       price: 50,
       description:
-        'Baby Bop is a green Triceratops, who was originally two years old, but turned three in "Look at Me, I\'m 3!"". Baby Bop has been on the show since July 29, 1991. She made her debut in the video "Barney in Concert". She wears a pink bow and pink ballet slippers, and carries a yellow security blanket. She sings the song "My Yellow Blankey" to show how much her security blanket means to her. She likes to eat macaroni and cheese and pizza. She is the younger sister of B.J..',
+        'Baby Bop is a green Triceratops, who was originally two years old, but turned three in "Look at Me, I\'m 3!". Baby Bop has been on the show since July 29, 1991. She made her debut in the video "Barney in Concert". She wears a pink bow and pink ballet slippers, and carries a yellow security blanket. She sings the song "My Yellow Blankey" to show how much her security blanket means to her. She likes to eat macaroni and cheese and pizza. She is the younger sister of B.J..',
       imageUrl:
         'https://vignette.wikia.nocookie.net/universalstudios/images/e/e7/Baby_Bop_Sprite_HD.png/revision/latest?cb=20170421214542'
     })
