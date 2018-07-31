@@ -3,7 +3,7 @@ require('../../public/style.css')
 
 const Dinosaurs = (props) => {
     return (
-        <div className="dinosaur">
+        <div>
             <img src={props.data.imageUrl} className="mainPagePicture"/>
             <h1>{props.data.name}</h1>
             <h2>{(props.data.price/ 100).toLocaleString(
