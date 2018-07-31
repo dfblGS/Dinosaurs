@@ -45,6 +45,13 @@ async function seed() {
         'https://statici.behindthevoiceactors.com/behindthevoiceactors/_img/chars/bj-barneys-night-before-christmas-4.12.jpg'
     }),
     Dinosaurs.create({
+      name: 'Velociraptor',
+      price: 400000000,
+      description: "",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Velociraptor_Restoration.png/220px-Velociraptor_Restoration.png",
+      expirationDate: new Date(Date.now() + 120000)
+    }),
+    Dinosaurs.create({
       name: 'Baby Bop',
       price: 50,
       description:
