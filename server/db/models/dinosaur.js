@@ -31,7 +31,7 @@ const Dinosaurs = db.define('dinosaur', {
 	},
 	expirationDate: {
 		type: Sequelize.DATE,
-		defaultValue: Sequelize.NOW
+		defaultValue: new Date("2018-8-03 11:11:11")
 	}
 })
 

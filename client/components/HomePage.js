@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
 import {addToCart, updateCart} from '../store/cartReducer'
 import Button from '@material-ui/core/Button'
+import Countdown from "./Countdown"
 
 export class HomePage extends Component {
   constructor() {
@@ -36,6 +37,7 @@ export class HomePage extends Component {
           <h1>Loading...</h1>
         ) : (
           dinosaurs.map(data => {
+            if ((new Date(data.expirationDate).getTime() - new Date().getTime()) > 0) {
             return (
               <ul key={data.id}>
                 <img src={data.imageUrl} className="mainPagePicture"/>
@@ -52,8 +54,11 @@ export class HomePage extends Component {
                 >
                   Add To Cart
                 </Button>
+                <div> Hurry, time is running out!
+                <Countdown expiration={data.expirationDate} />
+                </div>
               </ul>
-            )
+            ) }
           })
         )}
       </div>
