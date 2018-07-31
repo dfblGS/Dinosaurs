@@ -11,6 +11,7 @@ import {
   fetchFromLocalStorage,
   fetchByIdAndUpdateCart
 } from './store/cartReducer'
+import OrderHistory from './components/OrderHistory'
 
 /**
  * COMPONENT
@@ -33,6 +34,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} userId={this.props.id} cart={this.props.cart}/>
         <Route path="/signup" component={Signup} userId={this.props.id} cart={this.props.cart}/>
         <Route path="/receipt" component={ReceiptPage} />
+        <Route path="/orders" component={OrderHistory} userId={this.props.id}/>
         <Route path="/" component={HomePage} />
         {isLoggedIn && (
           <Switch>
