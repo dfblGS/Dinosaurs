@@ -24,7 +24,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
       ) : (
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="title" color="inherit">
+            <Typography variant="title" color="secondary">
             <div>
               {/* The navbar will show these links before you log in */}
               <Link to="/login">Login</Link>
