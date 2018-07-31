@@ -43,3 +43,33 @@ router.post('/:userId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const [cart, wasCreated] = await Cart.findOrCreate({
+      where: {
+        userId: req.params.userId,
+        active: true
+      }
+    })
+    const [dinoLine, created] = await CartDino.findOrCreate({
+      where: {
+        cartId: cart.id,
+        dinosaurId: req.body.id
+      }
+    })
+    const newQuantity = dinoLine.quantity + 1
+    await CartDino.update(
+      {quantity: newQuantity},
+      {
+        where: {
+          cartId: cart.id,
+          dinosaurId: req.body.id
+        }
+      }
+    )
+    res.send()
+  } catch (err) {
+    next(err)
+  }
+})
