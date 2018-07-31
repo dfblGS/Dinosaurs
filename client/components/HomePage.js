@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
-import {addToCart, updateCart, fetchByIdAndUpdateCart} from '../store/cartReducer'
+import {addToCart, updateCart, fetchByIdAndUpdateCart, updateCartDb, addCartDb} from '../store/cartReducer'
 require('../../public/style.css')
 import Button from '@material-ui/core/Button'
 import Dinosaurs from './Dinosaurs'
 
 
 import Countdown from "./Countdown"
+import axios from 'axios'
 
 export class HomePage extends Component {
   constructor() {
@@ -23,19 +24,27 @@ export class HomePage extends Component {
     if(this.props.user.id && localStorage ){
       this.props.fetchByIdAndUpdateCart(this.props.user.id, localStorage)
       window.localStorage.clear()
-      console.log(window.localStorage)
     }
   }
 
   handleClick(dinosaur) {
+    const { user } = this.props
     if (
       this.props.cart.find(dino => {
         return dino.name === dinosaur.name
       })
     ) {
-      this.props.updateCart(dinosaur)
+      if(user.id){
+        this.props.updateCartDb(dinosaur, user.id)
+      } else{
+        this.props.updateCart(dinosaur)
+      }
     } else {
-      this.props.addToCart(dinosaur)
+      if(user.id){
+        this.props.addCartDb(dinosaur, user.id)
+      } else{
+        this.props.addToCart(dinosaur)
+      }
     }
     this.props.history.push('/cart')
   }
@@ -88,7 +97,9 @@ const mapDispatchToProps = dispatch => ({
   addToCart: dinosaur => dispatch(addToCart(dinosaur)),
   updateCart: dinosaur => dispatch(updateCart(dinosaur)),
   fetchByIdAndUpdateCart: (id, cart) =>
-      dispatch(fetchByIdAndUpdateCart(id, cart))
+      dispatch(fetchByIdAndUpdateCart(id, cart)),
+  updateCartDb: (dinosaur, userId) => dispatch(updateCartDb(dinosaur, userId)),
+  addCartDb: (dinosaur, userId) => dispatch(addCartDb(dinosaur, userId))
 })
 
 export default connect(

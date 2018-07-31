@@ -48,6 +48,16 @@ export const fetchByIdAndUpdateCart = (id, cart) => async dispatch => {
   dispatch(getOneCart(newCart))
 }
 
+export const updateCartDb = (dinosaur, userId) => async dispatch => {
+  await axios.put(`api/cart/${userId}`, dinosaur )
+  dispatch(updateCart(dinosaur))
+}
+
+export const addCartDb = (dinosaur, userId) => async dispatch => {
+  await axios.put(`api/cart/${userId}`, dinosaur )
+  dispatch(addToCart(dinosaur))
+}
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ONE_CART:
