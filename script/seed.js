@@ -45,6 +45,13 @@ async function seed() {
         'https://statici.behindthevoiceactors.com/behindthevoiceactors/_img/chars/bj-barneys-night-before-christmas-4.12.jpg'
     }),
     Dinosaurs.create({
+      name: 'Velociraptor',
+      price: 400000000,
+      description: "Velociraptor (/vɪˈlɒsɪræptər/; meaning 'swift seizer' in Latin) is a genus of dromaeosaurid theropod dinosaur that lived approximately 75 to 71 million years ago during the later part of the Cretaceous Period. Two species are currently recognized, although others have been assigned in the past. The type species is V. mongoliensis; fossils of this species have been discovered in Mongolia. A second species, V. osmolskae, was named in 2008 for skull material from Inner Mongolia, China.",
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Velociraptor_Restoration.png/220px-Velociraptor_Restoration.png",
+      expirationDate: new Date(Date.now() + 120000)
+    }),
+    Dinosaurs.create({
       name: 'Baby Bop',
       price: 50,
       description:

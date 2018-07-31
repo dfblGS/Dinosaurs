@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import Dinosaurs from './Dinosaurs'
 
 
+import Countdown from "./Countdown"
 
 export class HomePage extends Component {
   constructor() {
@@ -42,18 +43,23 @@ export class HomePage extends Component {
           <div className='dinosaurs'>
             {
             dinosaurs.map(data => {
-              return (
-                <ul key={data.id} >
-                  <Dinosaurs data={data} />
-                  <Button variant='contained' color="primary"
-                    onClick={() => {
-                      this.handleClick(data)
-                    }}
-                  >
-                    Add To Cart
-                  </Button>
-                </ul>
-              )
+              if ((new Date(data.expirationDate).getTime() - new Date().getTime()) > 0) {
+                return (
+                  <ul key={data.id} >
+                    <Dinosaurs data={data} />
+                    <div> Hurry, time is running out!
+                      <Countdown expiration={data.expirationDate} />
+                    </div>
+                    <Button variant='contained' color="primary"
+                      onClick={() => {
+                        this.handleClick(data)
+                      }}
+                    >
+                      Add To Cart
+                    </Button>
+                  </ul>
+                )
+              }
             })
           }
           </div>
