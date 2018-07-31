@@ -39,7 +39,7 @@ export const updateCart = dinosaur => ({
 })
 
 export const fetchByIdAndUpdateCart = (id, cart) => async dispatch => {
-  const response = await axios.post(`/cart/${id}`, cart)
+  const response = await axios.post(`api/cart/${id}`, cart)
   const cartFromServer = response.data
   dispatch(getOneCart(cartFromServer))
 }

@@ -12,6 +12,7 @@ export class Cart extends Component {
   }
 
   handleRemove(dinosaur) {
+    if(this.props.cart.length === 1) window.localStorage.clear()
     this.props.removeFromCart(dinosaur)
   }
 
@@ -20,9 +21,9 @@ export class Cart extends Component {
   }
 
   render() {
-    const {cart} = this.props
+    const {cart, user} = this.props
     const cartString = JSON.stringify(cart)
-		window.localStorage.setItem('cart', cartString)
+    if(!user.id && cart.length !== 0) window.localStorage.setItem('cart', cartString)
     let total = 0
     if (cart.length === 0) {
       return (
@@ -73,7 +74,8 @@ export class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -20,10 +20,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     const cartString = window.localStorage.getItem('cart')
     const cart = JSON.parse(cartString)
-    if (!this.props.isLoggedIn) this.props.fetchFromLocalStorage(cart)
-    else {
-      this.props.fetchByIdAndUpdateCart(this.props.id, cart)
-    }
+    if (cart) this.props.fetchFromLocalStorage(cart)
   }
 
   render() {
@@ -33,8 +30,8 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/cart" component={Cart} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} userId={this.props.id} cart={this.props.cart}/>
+        <Route path="/signup" component={Signup} userId={this.props.id} cart={this.props.cart}/>
         <Route path="/receipt" component={ReceiptPage} />
         <Route path="/" component={HomePage} />
         {isLoggedIn && (
@@ -44,7 +41,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Login} userId={this.props.id} cart={this.props.cart}/>
       </Switch>
     )
   }
@@ -58,7 +55,8 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    id: state.user.id
+    id: state.user.id,
+    cart: state.cart
   }
 }
 
@@ -69,8 +67,8 @@ const mapDispatch = dispatch => {
     },
     fetchFromLocalStorage: dinosaurs =>
       dispatch(fetchFromLocalStorage(dinosaurs)),
-    fetchByIdAndUpdateCart: (id, cart) =>
-      dispatch(fetchByIdAndUpdateCart(id, cart))
+    // fetchByIdAndUpdateCart: (id, cart) =>
+    //   dispatch(fetchByIdAndUpdateCart(id, cart))
   }
 }
 

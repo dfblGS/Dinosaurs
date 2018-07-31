@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDinosaurs} from '../store/dinosaurReducer'
-import {addToCart, updateCart} from '../store/cartReducer'
+import {addToCart, updateCart, fetchByIdAndUpdateCart} from '../store/cartReducer'
 import Button from '@material-ui/core/Button'
 
 export class HomePage extends Component {
@@ -11,8 +11,15 @@ export class HomePage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchDinosaurs()
+    const localStorageS = window.localStorage.getItem('cart')
+    const localStorage = JSON.parse(localStorageS)
+    console.log(localStorage)
+    if(this.props.user.id && localStorage ){
+      this.props.fetchByIdAndUpdateCart(this.props.user.id, localStorage)
+      window.localStorage.clear()
+      console.log(window.localStorage)
+    }
   }
 
   handleClick(dinosaur) {
@@ -63,13 +70,16 @@ export class HomePage extends Component {
 
 const mapStateToProps = state => ({
   dinosaurs: state.dinosaurs,
-  cart: state.cart
+  cart: state.cart,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchDinosaurs: () => dispatch(fetchDinosaurs()),
   addToCart: dinosaur => dispatch(addToCart(dinosaur)),
-  updateCart: dinosaur => dispatch(updateCart(dinosaur))
+  updateCart: dinosaur => dispatch(updateCart(dinosaur)),
+  fetchByIdAndUpdateCart: (id, cart) =>
+      dispatch(fetchByIdAndUpdateCart(id, cart))
 })
 
 export default connect(
