@@ -73,3 +73,20 @@ router.put('/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/:userId/:dinoId', async (req, res, next) => {
+  try {
+    const cart = await Cart.findOne({
+      where: {
+        userId: req.params.userId,
+        active: true
+      }
+    })
+    await CartDino.destroy({
+      where: {cartId: cart.id, dinosaurId: req.params.dinoId}
+    })
+    res.send()
+  } catch (err) {
+    next(err)
+  }
+})
