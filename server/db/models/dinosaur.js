@@ -28,6 +28,10 @@ const Dinosaurs = db.define('dinosaur', {
 			isUrl: true,
 			notEmpty: true,
 		},
+	},
+	expirationDate: {
+		type: Sequelize.DATE,
+		defaultValue: Sequelize.NOW
 	}
 })
 
