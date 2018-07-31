@@ -41,7 +41,6 @@ export const updateCart = dinosaur => ({
 export const fetchByIdAndUpdateCart = (id, cart) => async dispatch => {
   const response = await axios.post(`api/cart/${id}`, cart)
   const cartFromServer = response.data
-  console.log(cartFromServer)
   const newCart = cartFromServer.dinosaurs.map(dino => {
     dino.quantity = dino.cartDino.quantity
     return dino
