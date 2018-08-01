@@ -20,7 +20,6 @@ export class HomePage extends Component {
     this.props.fetchDinosaurs()
     const localStorageS = window.localStorage.getItem('cart')
     const localStorage = JSON.parse(localStorageS)
-    console.log(localStorage)
     if(this.props.user.id && localStorage ){
       this.props.fetchByIdAndUpdateCart(this.props.user.id, localStorage)
       window.localStorage.clear()
