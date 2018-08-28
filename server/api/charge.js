@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const stripe = require("stripe")("sk_test_M6Sf8iz8JUYfuo6mQqumBwHm"); //Shh, this key is secret.
+const stripe = require("stripe")(process.env.STRIPE_CHARGE_KEY) //Shh, this key is secret.
 module.exports = router
 
 router.use(require("body-parser").text())
